@@ -1,32 +1,19 @@
-import React from 'react';
+import { MovieProps } from "@/interfaces"
+import Image from "next/image"
 
-interface MovieCardProps {
-  title: string;
-  posterUrl: string;
-  year?: string;
-  rating?: number;
-  className?: string;
-}
-
-const MovieCard: React.FC<MovieCardProps> = ({
-  title,
-  posterUrl,
-  year,
-  rating,
-  className = '',
-}) => {
+const MovieCard: React.FC<MovieProps> = ({ title, posterImage, releaseYear }) => {
   return (
-    <div className={`rounded-lg overflow-hidden shadow-lg ${className}`}>
-      <img src={posterUrl} alt={title} className="w-full h-64 object-cover" />
-      <div className="p-4">
-        <h3 className="font-bold text-lg mb-1 truncate">{title}</h3>
-        <div className="flex justify-between text-sm text-gray-600">
-          {year && <span>{year}</span>}
-          {rating && <span>⭐ {rating.toFixed(1)}</span>}
-        </div>
+    <div className="h-[563px]">
+      <div>
+        <Image className="h-[430px] w-full rounded-md hover:cursor-pointer" src={posterImage} width={100} height={100} alt={title} />
+
+      </div>
+      <div className="flex justify-between py-4">
+        <p className="text-xl font-bold">{title}</p>
+        <p className="text-xl text-[#E2D609]">{releaseYear}</p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MovieCard;
+export default MovieCard
